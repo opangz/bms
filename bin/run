@@ -5,10 +5,15 @@
 # Stop on errors
 set -Eeuo pipefail
 
-# Set environment variables
+# Call db create if the database file does not exist
+if test ! -e "var/bms.sqlite3"; then
+    ./bin/db create
+fi
 
+
+# Set environment variables
 export FLASK_ENV=development
-export FLASK_APP=app
+export FLASK_APP=bms
 
 # Serve
 flask run --host 0.0.0.0 --port 8000
