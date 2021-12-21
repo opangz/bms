@@ -30,8 +30,9 @@ npm ci .
 Pro-tip: `pip freeze` can be used to list out the installed packages
 
 ## Run
-To run the application, run
+To build the front end and run a development server, run
 ```
+npx webpack --watch
 ./bin/run
 ```
-The application can be viewed at localhost:8000
+The application can be viewed at localhost:8000.

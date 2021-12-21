@@ -27,7 +27,7 @@ case $1 in
     ;;
   "dump")
     sqlite3 -batch var/bms.sqlite3 \
-    "SELECT item_id, item, date, category, sub_category, pretax_price, tax, price"`
+    "SELECT item_id, item, date, category, subcategory, pretax_price, tax, price"`
     `" FROM item NATURAL JOIN sub_category NATURAL JOIN category"`
     `" ORDER BY item_id"
     ;;
