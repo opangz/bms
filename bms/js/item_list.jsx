@@ -8,6 +8,14 @@ class ItemList extends React.Component {
         this.state = { items: [] };
     }
 
+    formatAsCurrency = (params) => {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+        return formatter.format(params.value);
+    }
+
     componentDidMount() {
         const { url } = this.props;
 
@@ -27,16 +35,25 @@ class ItemList extends React.Component {
 
     render() {
         // GridRowsProp type
-        const rows = this.state.items; 
+        const rows = this.state.items;
 
         // GridColDef[] type
         const columns = [
-            { field: 'item', headerName: 'Name', width: 100 },
+            { field: 'item', headerName: 'Name', width: 150 },
             { field: 'category', headerName: 'Category', width: 100 },
-            { field: 'subcategory', headerName: 'Subcategory', width: 100 },
-            { field: 'pretax_price', headerName: 'Pretax Price', width: 100 },
-            { field: 'tax', headerName: 'Tax', width: 100 },
-            { field: 'price', headerName: 'Price', width: 100 },
+            { field: 'subcategory', headerName: 'Subcategory', width: 120 },
+            {
+                field: 'pretax_price', headerName: 'Pretax Price', width: 120,
+                valueFormatter: this.formatAsCurrency
+            },
+            {
+                field: 'tax', headerName: 'Tax', width: 80,
+                valueFormatter: this.formatAsCurrency
+            },
+            {
+                field: 'price', headerName: 'Price', width: 80,
+                valueFormatter: this.formatAsCurrency
+            },
             { field: 'date', headerName: 'Date', width: 100 },
         ];
 

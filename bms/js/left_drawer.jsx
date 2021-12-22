@@ -5,51 +5,42 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
 
-export default function LeftDrawer() {
-    const [state, setState] = React.useState({
-        top: false,
-        left: false,
-        bottom: false,
-        right: false,
-    });
+class LeftDrawer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isOpen: false };
+    }
 
-    const toggleDrawer = (anchor, open) => (event) => {
+    toggleDrawer = (toggle) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
 
-        setState({ ...state, [anchor]: open });
+        this.setState({ isOpen: toggle });
     };
 
-    const list = (anchor) => (
+    drawerComponent = () => (
         <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+            sx={{ width: 250 }}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                {['Inbox', 'Starred'].map((text) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                {['About'].map((text) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
@@ -57,22 +48,29 @@ export default function LeftDrawer() {
         </Box>
     );
 
-    return (
-        <div>
-            {
-                ['left', 'right', 'top', 'bottom'].map((anchor) => (
-                    <React.Fragment key={anchor}>
-                        <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-                        <Drawer
-                            anchor={anchor}
-                            open={state[anchor]}
-                            onClose={toggleDrawer(anchor, false)}
-                        >
-                            {list(anchor)}
-                        </Drawer>
-                    </React.Fragment>
-                ))
-            }
+    render() {
+        return <div>
+            <React.Fragment>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                    onClick={this.toggleDrawer(true)}
+                >
+                    <MenuIcon/>
+                </IconButton>
+                <Drawer
+                    anchor='left'
+                    open={this.state.isOpen}
+                    onClose={this.toggleDrawer(false)}
+                >
+                    {this.drawerComponent()}
+                </Drawer>
+            </React.Fragment>
         </div >
-    );
+    };
 };
+
+export default LeftDrawer;
