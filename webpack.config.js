@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './bms/js/main.jsx',
+  entry: './bms/js/dashboard/main.jsx',
   output: {
     path: path.join(__dirname, '/bms/static/js/'),
     filename: 'bundle.js',

@@ -1,2 +1,2 @@
-"""Views, one for each Insta485 page."""
+"""Views, one for each page."""
 from bms.views.index import show_index
