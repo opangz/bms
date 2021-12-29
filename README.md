@@ -30,9 +30,13 @@ npm ci .
 Pro-tip: `pip freeze` can be used to list out the installed packages
 
 ## Run
-To build the front end and run a development server, run
+To reset and build the front end, run
 ```
+rm ./bms/static/js/*
 npx webpack --watch
+```
+To run a development server, run
+```
 ./bin/run
 ```
 The application can be viewed at localhost:8000.

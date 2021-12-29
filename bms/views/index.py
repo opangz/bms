@@ -11,9 +11,10 @@ import bms
 @bms.app.route('/')
 def show_index():
     """Display / route."""
-    return flask.render_template("index.html")
+    return flask.render_template("dashboard.html")
 
-@bms.app.route('/add-item/')
-def show_add_item():
-    """Display Add Item route."""
-    return flask.render_template("add_item.html")
+@bms.app.route('/items/<item_id>/')
+def show_item(item_id):
+    """Display Item route."""
+    
+    return flask.render_template("item.html")

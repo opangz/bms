@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 class LeftDrawer extends React.Component {
     constructor(props) {
@@ -22,17 +23,21 @@ class LeftDrawer extends React.Component {
         this.setState({ isOpen: toggle });
     };
 
-    drawerComponent = () => (
-        <Box
+    drawerComponent = () => {
+        const drawerList = [
+            ['Dashboard', '/'],
+            ['Item', '/items/1/'],
+        ];
+        return <Box
             sx={{ width: 250 }}
             role="presentation"
             onClick={this.toggleDrawer(false)}
             onKeyDown={this.toggleDrawer(false)}
         >
             <List>
-                {['Inbox', 'Starred'].map((text) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
+                {drawerList.map((el) => (
+                    <ListItem key={el[0]} button>
+                        <ListItemText primary={el[0]} />
                     </ListItem>
                 ))}
             </List>
@@ -45,7 +50,7 @@ class LeftDrawer extends React.Component {
                 ))}
             </List>
         </Box>
-    );
+    };
 
     render() {
         return <div>
@@ -58,7 +63,7 @@ class LeftDrawer extends React.Component {
                     sx={{ mr: 2 }}
                     onClick={this.toggleDrawer(true)}
                 >
-                    <MenuIcon/>
+                    <MenuIcon />
                 </IconButton>
                 <Drawer
                     anchor='left'

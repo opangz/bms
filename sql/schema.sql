@@ -14,7 +14,7 @@ CREATE TABLE subcategory(
 
 CREATE TABLE item(
     item_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    item VARCHAR2(40) NOT NULL,
+    name VARCHAR2(40) NOT NULL,
     date DATE NOT NULL,
     subcat_id INTEGER NOT NULL,
     pretax_price DECIMAL(8, 2) NOT NULL,

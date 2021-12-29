@@ -2,10 +2,13 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './bms/js/dashboard/main.jsx',
+  entry: {
+    dashboard: './bms/js/dashboard/index.jsx',
+    item: './bms/js/item/index.jsx',
+  },
   output: {
     path: path.join(__dirname, '/bms/static/js/'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [

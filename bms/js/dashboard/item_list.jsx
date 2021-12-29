@@ -39,7 +39,7 @@ class ItemList extends React.Component {
 
         // GridColDef[] type
         const columns = [
-            { field: 'item', headerName: 'Name', width: 150 },
+            { field: 'name', headerName: 'Name', width: 150 },
             { field: 'category', headerName: 'Category', width: 100 },
             { field: 'subcategory', headerName: 'Subcategory', width: 120 },
             {
